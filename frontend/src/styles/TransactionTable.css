@@ -1,0 +1,76 @@
+.table-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.transaction-table thead {
+  background-color: #f9f9f9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.transaction-table th {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.transaction-table td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+.transaction-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.transaction-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.loading-state,
+.empty-state {
+  padding: 3rem;
+  text-align: center;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  color: #666;
+}
+
+@media (max-width: 1200px) {
+  .transaction-table {
+    font-size: 0.75rem;
+  }
+
+  .transaction-table th,
+  .transaction-table td {
+    padding: 0.5rem 0.25rem;
+  }
+}
+
