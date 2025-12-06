@@ -1,110 +1,80 @@
-/* Global Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Container - make sure it contrasts with surrounding header */
+.sorting-dropdown-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  background-color: rgba(17, 24, 39, 0.6);   /* dark semi-opaque so controls are visible */
+  
+  z-index: 50;                                 /* ensure on top of other layers */
+  border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
-
-  /* Deep dark gradient */
-  background: linear-gradient(135deg, #0a0f1f, #0d162b, #111827);
-  background-size: 300% 300%;
-  animation: darkBG 20s ease infinite;
-
-  color: #d1d5db; /* Soft light gray text */
-
-  min-height: 100vh;
-  padding: 10px;
-
-  transition: background 0.4s ease-in-out, color 0.3s ease-in-out;
-}
-
-/* Root container */
-#root {
-  min-height: 100vh;
-  padding: 20px;
-}
-
-/* Animated dark background */
-@keyframes darkBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Cards with glassmorphism */
-.card {
-  background: rgba(255, 255, 255, 0.04);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: #3b82f6;
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
-}
-
-/* Inputs & Select */
-input, select {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e5e7eb;
-  border: 1px solid #4b5563;
-  padding: 10px;
-  border-radius: 6px;
-  transition: 0.25s ease;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-}
-
-/* Buttons */
-button {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  color: #ffffff;
-  cursor: pointer;
+/* Label */
+.sorting-dropdown label {
   font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: 0.3s ease;
+  color: #e6eef8;    /* bright readable label */
+  white-space: nowrap;
+  font-size: 0.95rem;
+  margin-right: 0.5rem;
 }
 
-button:hover {
-  background: linear-gradient(135deg, #60a5fa, #2563eb);
-  transform: translateY(-2px);
-  box-shadow: 0 0 14px rgba(59, 130, 246, 0.7);
+/* The select itself - visible text, strong contrast */
+.sort-select {
+  width: 260px; /* fixed width so text doesn't wrap; increase if needed */
+  padding: 0.55rem 0.9rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  color: #f8fafc !important;     /* force readable text color */
+  -webkit-appearance: none;      /* remove default arrow on webkit */
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  min-width: 200px;
+  transition: box-shadow .18s ease, border-color .18s ease;
+  z-index: 60;
 }
 
-/* Interactive hover class */
-.interactive:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 22px rgba(59, 130, 246, 0.5);
-  transition: 0.25s ease;
+/* Add a custom arrow using a background SVG so browser default arrow is hidden */
+.sort-select {
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23dbeafe' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 12px;
+  padding-right: 2.5rem; /* space for the arrow */
 }
 
-/* Fade-in animation */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 0.9s forwards ease-in-out;
+/* Hover / focus */
+.sort-select:hover {
+  border-color: rgba(59,130,246,0.65);
+  box-shadow: 0 6px 18px rgba(59,130,246,0.06);
+}
+.sort-select:focus {
+  border-color: rgba(59,130,246,1);
+  box-shadow: 0 8px 24px rgba(59,130,246,0.12);
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+/* Make sure options are readable when the native dropdown opens */
+.sort-select option {
+  background-color: #0b1220; /* dark option background */
+  color: #f8fafc;            /* readable option text */
+}
+
+/* For Windows/Edge/IE compatibility (expand arrow) */
+.sort-select::-ms-expand {
+  display: none;
+}
+
+/* If any global rules are accidentally dimming form controls (e.g. opacity), override them */
+.sorting-dropdown-wrapper,
+.sorting-dropdown,
+.sorting-dropdown label,
+.sort-select,
+.sort-select option {
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
