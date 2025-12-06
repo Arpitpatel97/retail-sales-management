@@ -12,7 +12,7 @@
   align-items: center;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #eee;
-  background-color: #3e3939;
+  background-color: white;
 }
 
 .filter-panel-header h3 {
@@ -143,3 +143,6 @@
   background-color: #fdd;
 }
 
+.checkbox-label input[type="checkbox"] {
+  margin-right: 0.6rem;
+}

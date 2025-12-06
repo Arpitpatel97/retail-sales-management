@@ -2,11 +2,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 1rem;
-
-  /* Dark theme background */
-  background-color: rgba(255, 255, 255, 0.05);
-  z-index: 10;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
 }
 
 .sorting-dropdown {
@@ -17,42 +13,39 @@
 }
 
 .sorting-dropdown label {
-  font-weight: 500;
-  color: #e5e7eb; /* Light gray – visible on dark bg */
+  font-weight: 600;
+  color: #333;
   white-space: nowrap;
   font-size: 1rem;
 }
 
-/* Select box visible in dark mode */
 .sort-select {
   width: 100%;
   padding: 0.7rem 1rem;
   font-size: 1rem;
-
-  background-color: rgba(255, 255, 255, 0.12); /* visible */
-  color: #f9fafb;  /* bright text so content is visible */
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #ffffff;
+  color: #333;
+  border: 2px solid #4a90e2;
   border-radius: 6px;
-
   cursor: pointer;
   outline: none;
-
   transition: all 0.2s ease;
   min-width: 200px;
+  font-weight: 500;
 }
 
 .sort-select option {
-  background-color: #1f2937; /* Dark dropdown panel */
-  color: #f9fafb;
+  background-color: #ffffff;
+  color: #333;
+  padding: 0.5rem;
 }
 
-/* Hover + Focus effects */
 .sort-select:hover {
   border-color: #60a5fa;
+  background-color: #f9f9f9;
 }
 
 .sort-select:focus {
   border-color: #3b82f6;
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
 }
